@@ -1,6 +1,7 @@
 import { FC } from 'react';
+
 import { Person } from '../types';
-import { PersonItem } from './PersonItem';
+import { PersonItem } from './index';
 
 type Props = {
   people: Person[];
@@ -24,19 +25,9 @@ export const PeopleTable: FC<Props> = ({ people }) => {
       </thead>
 
       <tbody>
-        {people.map(person => {
-          const personWithParents = { ...person };
-
-          personWithParents.mother = people.find(
-            personItem => personItem.name === person.motherName,
-          );
-
-          personWithParents.father = people.find(
-            personItem => personItem.name === person.fatherName,
-          );
-
-          return <PersonItem person={personWithParents} key={person.slug} />;
-        })}
+        {people.map(person => (
+          <PersonItem person={person} key={person.slug} />
+        ))}
       </tbody>
     </table>
   );

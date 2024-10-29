@@ -1,8 +1,9 @@
 import { FC } from 'react';
-import { Person } from '../types';
-import { PersonLink } from './PersonLink';
 import { useParams } from 'react-router-dom';
 import cn from 'classnames';
+
+import { Person } from '../types';
+import { PersonLink } from './index';
 
 type Props = {
   person: Person;

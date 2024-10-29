@@ -1,7 +1,7 @@
 import './App.scss';
 import { Outlet } from 'react-router-dom';
 
-import { Navbar } from './components/Navbar';
+import { Navbar } from './components';
 
 export const App = () => (
   <div data-cy="app">

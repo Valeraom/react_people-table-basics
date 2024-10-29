@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import * as peopleService from '../api';
-import { Loader } from '../components/Loader';
-import { PeopleTable } from '../components/PeopleTable';
+
+import { Loader, PeopleTable } from '../components';
 import { Person } from '../types';
+import { findParents } from '../utils/findParents';
 
 export const PeoplePage = () => {
   const [people, setPeople] = useState<Person[]>([]);
@@ -13,7 +14,11 @@ export const PeoplePage = () => {
     setIsLoading(true);
     peopleService
       .getPeople()
-      .then(setPeople)
+      .then(res => {
+        const peopleWithParents = findParents(res);
+
+        setPeople(peopleWithParents);
+      })
       .catch(() => setErrorMessage('Something went wrong'))
       .finally(() => setIsLoading(false));
   };
